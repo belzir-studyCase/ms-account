@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const mongoURI = 'mongodb+srv://yacinbnsalh:yacinbnsalh@database.ywuvn.mongodb.net/TestDB';
+const mongoURI = 'mongodb+srv://yacinbnsalh:yacinbnsalh@database.ywuvn.mongodb.net/UserDB';
 
 const connectToMongoDB = async () => {
     try {
