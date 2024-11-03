@@ -2,17 +2,13 @@
 import express from "express";
 import User from '../models/user.js';
 import axios from "axios";
-
-
 const router = express.Router();
 
 router.post("/login", async (req, res) => { 
     try {
-        const { googleId, imageUrl, email, name, givenName, familyName } = req.body;  // Get data from req.body
-
         try {
+            const { googleId, imageUrl, email, name, givenName, familyName } = req.body;  
             let user = await User.findOne({ googleId });
-
             if (!user) {
                 const role = "Client";
                 user = new User({ googleId, imageUrl, email, name, givenName, familyName , role });
@@ -38,5 +34,13 @@ router.get("/all/users", async (req, res) => {
 });
 
 
+router.get("/admin", async (req, res) => {
+    try {
+        let user = await User.findOne({ role: "Admin" });
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 export default router;
