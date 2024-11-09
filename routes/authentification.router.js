@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
             user = new User({ googleId, imageUrl, email, name, givenName, familyName , role });
             await user.save();
         }
-        await axios.post(`http://localhost:3000/notification/newauth/${email}`);
+        await axios.post(`https://gateway-9pxx.onrender.com/notification/newauth/${email}`);
         res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
